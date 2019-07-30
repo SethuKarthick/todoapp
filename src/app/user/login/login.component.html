@@ -1,0 +1,72 @@
+<div class="container-fluid ">
+    <div class="row">
+        <div style="margin-top: 5vh; float:left" class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+            <div class="card border-success cardBorder; float:left">
+
+                <div style="padding-top:30px" class="card-body text-center">
+                    <div class="text-center">
+                        <div>
+                            <h6>Please Sign-in to check your list</h6>
+                        </div>
+                        <div>
+                            <h6>Manage yourself by creating your TODO list</h6>
+                        </div>
+                    </div>
+
+                    <br>
+                    <form id="loginform" class="form-horizontal" role="form" #loginForm="ngForm">
+                        <div class="input-group mb-3 form-field-container">
+
+                            <mat-form-field>
+                                <!-- <mat-label>Email</mat-label> <br> -->
+
+                                <input matInput placeholder="Enter your email" [formControl]="email" required autofocus >
+                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="input-group mb-3 form-field-container">
+
+
+                            <mat-form-field appearance="standard">
+                                <!-- <mat-label>Password</mat-label> <br> -->
+                                <input matInput type="password" placeholder="Enter your Password" minlength="8"
+                                    #pwd="ngModel" [(ngModel)]="password" name="password"
+                                    (keydown)="loginUsingKeypress($event)" required>
+                                <mat-hint>* Min 8 Characters</mat-hint>
+
+                                <mat-error *ngIf="pwd.errors?.required">You must enter a value</mat-error>
+                                <mat-error *ngIf="pwd.errors?.minlength">You must enter atleast 8 Chars</mat-error>
+
+                            </mat-form-field>
+
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button style="float:right" id="btn-signin" type="button" class="btn btn-primary"
+                                    (click)="signInFunction()" [disabled]="!loginForm.valid">Login
+                                    Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                        <a mat-raised-link [routerLink]="['/user/forgot-password']" style="float:right">Forgot
+                            password?</a>
+
+                        <br>
+                        <br>
+                        <button mat-button color="accent" type="button" style="float:left"
+                            [routerLink]="['/user/signup']">Create
+                            Account!</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
